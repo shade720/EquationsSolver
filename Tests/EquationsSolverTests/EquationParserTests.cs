@@ -49,6 +49,17 @@ public class EquationParserTests
     }
 
     [Fact]
+    public void Parse_CoefficientWithComma_ThrowEquationParseException()
+    {
+        // Arrange
+        const string coefficientWithComma = "1,5";
+        const string coefficientsLine = $"1 {coefficientWithComma} 2";
+
+        // Act, Assert
+        Assert.Throws<EquationParseException>(() => _sut.Parse(coefficientsLine));
+    }
+
+    [Fact]
     public void Parse_OneCoefficient_ThrowArgumentException()
     {
         // Arrange

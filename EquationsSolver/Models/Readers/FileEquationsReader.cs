@@ -7,7 +7,7 @@ public class FileEquationsReader : IEquationsReader
     private readonly string _filename;
 
     public FileEquationsReader(
-        string filename, 
+        string filename,
         IEquationParser equationParser)
     {
         _filename = filename;
