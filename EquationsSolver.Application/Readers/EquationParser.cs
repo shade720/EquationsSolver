@@ -1,8 +1,9 @@
 ﻿using System.Globalization;
-using EquationsSolver.Abstractions;
-using EquationsSolver.Exceptions;
+using EquationsSolver.Domain.Abstractions;
+using EquationsSolver.Domain.Exceptions;
+using EquationsSolver.Domain.Models;
 
-namespace EquationsSolver.Models.Readers;
+namespace EquationsSolver.Application.Readers;
 
 public class EquationParser : IEquationParser
 {

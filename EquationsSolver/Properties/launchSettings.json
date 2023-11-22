@@ -1,8 +1,11 @@
 {
   "profiles": {
-    "EquationsSolver": {
-      "commandName": "Project",
-      "commandLineArgs": "-h"
+    "WSL": {
+      "commandName": "WSL2",
+      "distributionName": ""
+    },
+    "EquationsSolver.ConsoleUI": {
+      "commandName": "Project"
     }
   }
 }

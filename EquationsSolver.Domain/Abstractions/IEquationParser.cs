@@ -1,6 +1,6 @@
-﻿using EquationsSolver.Models;
+﻿using EquationsSolver.Domain.Models;
 
-namespace EquationsSolver.Abstractions;
+namespace EquationsSolver.Domain.Abstractions;
 
 public interface IEquationParser
 {

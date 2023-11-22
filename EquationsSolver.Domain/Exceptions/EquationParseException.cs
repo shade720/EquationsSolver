@@ -1,4 +1,4 @@
-﻿namespace EquationsSolver.Exceptions;
+﻿namespace EquationsSolver.Domain.Exceptions;
 
 public class EquationParseException : Exception
 {

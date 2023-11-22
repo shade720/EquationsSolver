@@ -1,4 +1,4 @@
-﻿namespace EquationsSolver.Abstractions;
+﻿namespace EquationsSolver.Domain.Abstractions;
 
 public interface IEquationReaderFactory
 {

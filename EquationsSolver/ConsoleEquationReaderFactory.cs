@@ -1,20 +1,19 @@
-﻿using EquationsSolver.Abstractions;
-using EquationsSolver.Models.Readers;
+﻿using EquationsSolver.Application.Readers;
+using EquationsSolver.Domain.Abstractions;
 
-namespace EquationsSolver.Factories;
+namespace EquationsSolver.ConsoleUI;
 
-public class EquationReaderFactory : IEquationReaderFactory
+public class ConsoleEquationReaderFactory : IEquationReaderFactory
 {
     private readonly IEquationParser _equationParser;
 
-    public EquationReaderFactory(IEquationParser equationParser)
+    public ConsoleEquationReaderFactory(IEquationParser equationParser)
     {
         _equationParser = equationParser;
     }
 
     public IEquationsReader CreateEquationsReader(string? equationsSourcePath)
     {
-        // Проверяем, является ли источник файловым.
         if (!string.IsNullOrEmpty(equationsSourcePath) && equationsSourcePath.IndexOfAny(Path.GetInvalidPathChars()) == -1)
             return new FileEquationsReader(equationsSourcePath, _equationParser);
 

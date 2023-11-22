@@ -1,6 +1,7 @@
-﻿using EquationsSolver.Abstractions;
+﻿using EquationsSolver.Domain.Abstractions;
+using EquationsSolver.Domain.Models;
 
-namespace EquationsSolver.Models.Presenters;
+namespace EquationsSolver.ConsoleUI;
 
 public class ConsoleSolvingResultsPresenter : ISolvingResultsPresenter
 {

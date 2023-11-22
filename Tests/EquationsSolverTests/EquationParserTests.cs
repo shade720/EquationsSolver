@@ -1,5 +1,5 @@
-using EquationsSolver.Exceptions;
-using EquationsSolver.Models.Readers;
+using EquationsSolver.Application.Readers;
+using EquationsSolver.Domain.Exceptions;
 
 namespace EquationsSolverTests;
 

@@ -1,4 +1,4 @@
-﻿namespace EquationsSolver.Models;
+﻿namespace EquationsSolver.Domain.Models;
 
 public class EquationSolvingResult
 {

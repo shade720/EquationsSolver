@@ -1,38 +1,36 @@
 ﻿using System.Collections.Concurrent;
-using EquationsSolver.Abstractions;
-using EquationsSolver.Models;
-using EquationsSolver.Options;
+using EquationsSolver.Domain.Abstractions;
+using EquationsSolver.Domain.Models;
 
-namespace EquationsSolver;
+namespace EquationsSolver.Application;
 
-public class Application
+public class App
 {
     private readonly SolverOptions _options;
     private readonly IEquationReaderFactory _equationReaderFactory;
     private readonly IEquationSolver _equationSolver;
-    private readonly ISolvingResultsPresenterFactory _solvingResultsPresenterFactory;
+    private readonly ISolvingResultsPresenter _solvingResultsPresenter;
 
-    public Application(
+    public App(
         SolverOptions options,
         IEquationReaderFactory equationReaderFactory,
         IEquationSolver equationSolver,
-        ISolvingResultsPresenterFactory solvingResultsPresenterFactory)
+        ISolvingResultsPresenter solvingResultsPresenter)
     {
         _options = options;
         _equationReaderFactory = equationReaderFactory;
         _equationSolver = equationSolver;
-        _solvingResultsPresenterFactory = solvingResultsPresenterFactory;
+        _solvingResultsPresenter = solvingResultsPresenter;
     }
 
     public void Start()
     {
         var equationsReader = _equationReaderFactory.CreateEquationsReader(_options.EquationsFileName);
-        var solvingResultsPresenter = _solvingResultsPresenterFactory.CreatePresenter();
 
         if (_options.EquationsFileName is null || _options.ThreadsNumber is null)
-            SequentialMode(equationsReader, solvingResultsPresenter);
+            SequentialMode(equationsReader, _solvingResultsPresenter);
         else
-            ParallelMode(equationsReader, solvingResultsPresenter);
+            ParallelMode(equationsReader, _solvingResultsPresenter);
     }
 
     private void SequentialMode(IEquationsReader equationsReader, ISolvingResultsPresenter solvingResultsPresenter)

@@ -1,13 +1,14 @@
-﻿using EquationsSolver.Abstractions;
+﻿using EquationsSolver.Domain.Abstractions;
+using EquationsSolver.Domain.Models;
 
-namespace EquationsSolver.Models.Solvers;
+namespace EquationsSolver.Application.Solvers;
 
 public class QuadraticEquationSolver : IEquationSolver
 {
     public EquationSolvingResult Solve(Equation equation)
     {
         if (equation.Coefficients.Count != 3)
-            return new EquationSolvingResult { IsSolvedSuccessful = false, Roots = Array.Empty<double>(), OriginalEquation = equation};
+            return new EquationSolvingResult { IsSolvedSuccessful = false, Roots = Array.Empty<double>(), OriginalEquation = equation };
 
         var a = equation.Coefficients.ElementAt(0);
         var b = equation.Coefficients.ElementAt(1);
@@ -22,7 +23,7 @@ public class QuadraticEquationSolver : IEquationSolver
             return new EquationSolvingResult
             {
                 IsSolvedSuccessful = true,
-                Roots = new[]{ root1, root2},
+                Roots = new[] { root1, root2 },
                 OriginalEquation = equation
             };
         }
