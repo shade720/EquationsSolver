@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\EquationsSolver\EquationsSolver.ConsoleUI.csproj" />
+    <ProjectReference Include="..\..\EquationsSolver.Application\EquationsSolver.Application.csproj" />
   </ItemGroup>
 
 </Project>

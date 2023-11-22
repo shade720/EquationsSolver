@@ -3,15 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.ConsoleUI", "EquationsSolver\EquationsSolver.ConsoleUI.csproj", "{63C42AA6-3065-42A3-AEB1-9500E7CE6F3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.ConsoleUI", "EquationsSolver.ConsoleUI\EquationsSolver.ConsoleUI.csproj", "{63C42AA6-3065-42A3-AEB1-9500E7CE6F3C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05624424-D146-4D7B-9601-8267754C2C7E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationsSolverTests", "Tests\EquationsSolverTests\EquationsSolverTests.csproj", "{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.Aplication.Tests", "Tests\EquationsSolverTests\EquationsSolver.Aplication.Tests.csproj", "{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationsSolver.Domain", "EquationsSolver.Domain\EquationsSolver.Domain.csproj", "{EF2E8581-5449-4F34-A6B9-161E553F6FE7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.Domain", "EquationsSolver.Domain\EquationsSolver.Domain.csproj", "{EF2E8581-5449-4F34-A6B9-161E553F6FE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationsSolver.Application", "EquationsSolver.Application\EquationsSolver.Application.csproj", "{0F58FF9C-A034-463E-BF1D-21B318BD0891}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.Application", "EquationsSolver.Application\EquationsSolver.Application.csproj", "{0F58FF9C-A034-463E-BF1D-21B318BD0891}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
