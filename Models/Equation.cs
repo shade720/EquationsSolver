@@ -10,7 +10,7 @@ public class Equation
         var localCoefficients = coefficients.ToList();
         if (localCoefficients is null)
             throw new ArgumentNullException(nameof(coefficients));
-        if (localCoefficients.ToList().Count < 2)
+        if (localCoefficients.ToList().Count < 3)
             throw new ArgumentException("The number of coefficients is incorrect!");
 
         _coefficients = localCoefficients;
