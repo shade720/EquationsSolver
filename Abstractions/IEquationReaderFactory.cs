@@ -2,5 +2,5 @@
 
 public interface IEquationReaderFactory
 {
-    public IEquationsReader CreateEquationsReader(string? equationsPath);
+    public IEquationsReader CreateEquationsReader(string? equationsSourcePath);
 }

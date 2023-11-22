@@ -8,7 +8,7 @@ public class ConsoleSolvingResultsPresenter : ISolvingResultsPresenter
     {
         if (!result.IsSolvedSuccessful)
         {
-            Console.WriteLine($"Не удалось решить уравнение '{result.OriginalEquation}'. Возможно уравнение имеет неверный порядок.");
+            Console.WriteLine($"Не удалось решить уравнение '{result.OriginalEquation}'. Возможно уравнение имеет неверную степень.");
             return;
         }
         var roots = result.Roots.ToArray();

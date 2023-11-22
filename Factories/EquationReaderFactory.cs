@@ -12,10 +12,11 @@ public class EquationReaderFactory : IEquationReaderFactory
         _equationParser = equationParser;
     }
 
-    public IEquationsReader CreateEquationsReader(string? equationsPath)
+    public IEquationsReader CreateEquationsReader(string? equationsSourcePath)
     {
-        if (!string.IsNullOrEmpty(equationsPath) && equationsPath.IndexOfAny(Path.GetInvalidPathChars()) == -1)
-            return new FileEquationsReader(equationsPath, _equationParser);
+        // Проверяем, является ли источник файловым.
+        if (!string.IsNullOrEmpty(equationsSourcePath) && equationsSourcePath.IndexOfAny(Path.GetInvalidPathChars()) == -1)
+            return new FileEquationsReader(equationsSourcePath, _equationParser);
 
         return new ConsoleEquationsReader(_equationParser);
     }
