@@ -7,7 +7,7 @@ public class QuadraticEquationSolver : IEquationSolver
 {
     public EquationSolvingResult Solve(Equation equation)
     {
-        if (equation.Coefficients.Count != 3)
+        if (equation.Coefficients.Count != 3 || equation.Coefficients.ElementAt(0) == 0)
             return new EquationSolvingResult { IsSolvedSuccessful = false, Roots = Array.Empty<double>(), OriginalEquation = equation };
 
         var a = equation.Coefficients.ElementAt(0);
