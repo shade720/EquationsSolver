@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "EquationsSolver": {
+      "commandName": "Project",
+      "commandLineArgs": "-f E:\\Projects\\EquationsSolver\\equations.txt"
+    }
+  }
+}

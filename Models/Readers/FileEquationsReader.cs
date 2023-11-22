@@ -17,15 +17,18 @@ public class FileEquationsReader : IEquationsReader
     public IEnumerable<Equation> Read()
     {
         Console.WriteLine("Осуществляется ввод уравнений из файла...");
+        Console.WriteLine();
 
         using var sr = new StreamReader(_filename);
+        var linesCounter = 0;
         while (!sr.EndOfStream)
         {
+            linesCounter++;
             var coefficientLine = sr.ReadLine();
 
             if (string.IsNullOrEmpty(coefficientLine))
             {
-                Console.WriteLine($"Строку '{coefficientLine}' распарсить не удалось. Уравнение будет пропущено.");
+                Console.WriteLine($"Строка №{linesCounter} содержит ошибку. Уравнение будет пропущено.");
                 continue;
             }
 
@@ -36,12 +39,13 @@ public class FileEquationsReader : IEquationsReader
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Ошибка парсинга уравнения '{e.Message}'. Уравнение будет пропущено.");
+                Console.WriteLine($"Строка {linesCounter}. Ошибка парсинга уравнения '{e.Message}'. Уравнение будет пропущено.");
                 continue;
             }
 
-            Console.WriteLine($"Получено уравнение {parsedEquation}");
+            Console.WriteLine($"Получено уравнение {parsedEquation}.");
             yield return parsedEquation;
+            Console.WriteLine();
         }
     }
 }

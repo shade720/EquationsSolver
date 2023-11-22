@@ -7,7 +7,7 @@ public class QuadraticEquationSolver : IEquationSolver
     public EquationSolvingResult Solve(Equation equation)
     {
         if (equation.Coefficients.Count != 3)
-            return new EquationSolvingResult { IsSolvedSuccessful = false };
+            return new EquationSolvingResult { IsSolvedSuccessful = false, Roots = Array.Empty<double>(), OriginalEquation = equation};
 
         var a = equation.Coefficients.ElementAt(0);
         var b = equation.Coefficients.ElementAt(1);
@@ -22,27 +22,24 @@ public class QuadraticEquationSolver : IEquationSolver
             return new EquationSolvingResult
             {
                 IsSolvedSuccessful = true,
-                Roots = Roots.One,
-                Root1 = root1,
-                Root2 = root2
+                Roots = new[]{ root1, root2},
+                OriginalEquation = equation
             };
         }
 
         const double epsilon = 0.00001;
-
         if (Math.Abs(discriminant) < epsilon)
         {
             var root = -b / 2 * a;
             return new EquationSolvingResult
             {
-                IsSolvedSuccessful = true, 
-                Roots = Roots.One, 
-                Root1 = root,
-                Root2 = root
+                IsSolvedSuccessful = true,
+                Roots = new[] { root },
+                OriginalEquation = equation
             };
         }
 
         // discriminant < 0
-        return new EquationSolvingResult { IsSolvedSuccessful = true, Roots = Roots.None };
+        return new EquationSolvingResult { IsSolvedSuccessful = true, Roots = Array.Empty<double>(), OriginalEquation = equation };
     }
 }

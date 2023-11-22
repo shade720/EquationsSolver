@@ -30,10 +30,7 @@ public class Application
         foreach (var equation in equationsReader.Read())
         {
             var result = _equationSolver.Solve(equation);
-            if (result.IsSolvedSuccessful)
-                solvingResultsPresenter.ShowResults(result);
-            else 
-                Console.WriteLine($"Не удалось решить уравнение '{equation}'. Возможно уравнение имеет неверный порядок.");
+            solvingResultsPresenter.ShowResults(result);
         }
     }
 }

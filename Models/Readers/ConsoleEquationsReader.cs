@@ -13,13 +13,15 @@ public class ConsoleEquationsReader : IEquationsReader
 
     public IEnumerable<Equation> Read()
     {
-        Console.WriteLine("Осуществляется ввод уравнений с консоли (в формате: ввод -> решение -> ввод...)");
-        Console.WriteLine("Вводите коэффициенты уравнения через пробел в одной строке (значения с плавающей запятой вводятся через '.'). Например: 2 0 1.5 ....");
+        Console.WriteLine("Осуществляется ввод уравнений с консоли (в формате: ввод -> решение -> ввод...).");
+        Console.WriteLine("Вводите коэффициенты уравнения через пробел в одной строке (значения с плавающей запятой вводятся через '.').");
+        Console.WriteLine("Например: 2 0 1.5");
 
         var exitKey = default(ConsoleKey);
 
         while (exitKey != ConsoleKey.Escape)
         {
+            Console.WriteLine();
             Console.Write("Введите коэффициенты: ");
             var coefficientLine = Console.ReadLine();
 

@@ -6,19 +6,23 @@ public class ConsoleSolvingResultsPresenter : ISolvingResultsPresenter
 {
     public void ShowResults(EquationSolvingResult result)
     {
-        switch (result.Roots)
+        if (!result.IsSolvedSuccessful)
         {
-            case Roots.None:
-                Console.WriteLine("Решение уравнения: нет корней.");
+            Console.WriteLine($"Не удалось решить уравнение '{result.OriginalEquation}'. Возможно уравнение имеет неверный порядок.");
+            return;
+        }
+        var roots = result.Roots.ToArray();
+        switch (roots.Length)
+        {
+            case 0:
+                Console.WriteLine($"Уравнение {result.OriginalEquation} не имеет действтельных корней");
                 break;
-            case Roots.One:
-                Console.WriteLine($"Решение уравнения: имеет 1 корень - {result.Root1}.");
+            case 1:
+                Console.WriteLine($"Уравнение {result.OriginalEquation} имеет 1 действительный корень - {roots[0]}");
                 break;
-            case Roots.Two:
-                Console.WriteLine($"Решение уравнения: имеет 2 кореня - х1={result.Root1}; х2={result.Root2}.");
+            case > 1:
+                Console.WriteLine($"Уравнение {result.OriginalEquation}. Действительных корней - {roots.Length}. Корни: {string.Join(", ", roots)}");
                 break;
-            default:
-                throw new ArgumentOutOfRangeException();
         }
     }
 }

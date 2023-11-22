@@ -1,5 +1,4 @@
 ﻿using CommandLine;
-using EquationsSolver;
 using EquationsSolver.Abstractions;
 using EquationsSolver.Factories;
 using EquationsSolver.Models.Readers;
@@ -7,7 +6,9 @@ using EquationsSolver.Models.Solvers;
 using EquationsSolver.Options;
 using Microsoft.Extensions.DependencyInjection;
 
-public class Program
+namespace EquationsSolver;
+
+public static class Program
 {
     public static void Main(string[] args)
     {

@@ -2,8 +2,7 @@
 
 public class EquationSolvingResult
 {
+    public Equation OriginalEquation { get; set; }
     public bool IsSolvedSuccessful { get; set; }
-    public Roots Roots { get; set; }
-    public double? Root1 { get; set; }
-    public double? Root2 { get; set; }
+    public ICollection<double> Roots { get; set; }
 }
