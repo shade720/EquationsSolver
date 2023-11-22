@@ -7,6 +7,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver", "Equation
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05624424-D146-4D7B-9601-8267754C2C7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EquationsSolverTests", "Tests\EquationsSolverTests\EquationsSolverTests.csproj", "{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +19,16 @@ Global
 		{63C42AA6-3065-42A3-AEB1-9500E7CE6F3C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63C42AA6-3065-42A3-AEB1-9500E7CE6F3C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63C42AA6-3065-42A3-AEB1-9500E7CE6F3C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6} = {05624424-D146-4D7B-9601-8267754C2C7E}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {75893BB8-C62F-4BB4-B3F6-2708487D8010}
