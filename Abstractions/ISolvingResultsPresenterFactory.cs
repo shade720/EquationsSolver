@@ -1,6 +1,6 @@
 ﻿namespace EquationsSolver.Abstractions;
 
-public interface ISolveResultsPresenterFactory
+public interface ISolvingResultsPresenterFactory
 {
     public ISolvingResultsPresenter CreateEquationPresenter();
 }
