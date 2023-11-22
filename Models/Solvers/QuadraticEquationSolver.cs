@@ -9,13 +9,13 @@ public class QuadraticEquationSolver : IEquationSolver
         if (equation.Coefficients.Count != 3)
             return new EquationSolvingResult { IsSolvedSuccessful = false };
 
-        var a = equation.Coefficients.ElementAt(2);
+        var a = equation.Coefficients.ElementAt(0);
         var b = equation.Coefficients.ElementAt(1);
-        var c = equation.Coefficients.ElementAt(0);
+        var c = equation.Coefficients.ElementAt(2);
 
         var discriminant = Math.Pow(b, 2) - 4 * a * c;
 
-        if (discriminant < 0)
+        if (discriminant > 0)
         {
             var root1 = (-b + Math.Sqrt(discriminant)) / 2 * a;
             var root2 = (-b - Math.Sqrt(discriminant)) / 2 * a;

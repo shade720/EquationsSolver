@@ -10,15 +10,14 @@ public class Equation
         var localCoefficients = coefficients.ToList();
         if (localCoefficients is null)
             throw new ArgumentNullException(nameof(coefficients));
-        if (localCoefficients.ToList().Count < 3)
-            throw new ArgumentException("The number of coefficients is incorrect!");
-
+        if (localCoefficients.Count < 2)
+            throw new ArgumentException($"Уравнение с данными коэффициентами невозможно. Количество коэффициентов: {localCoefficients.Count}");
         _coefficients = localCoefficients;
     }
 
     public override string ToString()
     {
-        var coefficientsCount = _coefficients.Count;
-        return string.Join(" + ", _coefficients.Select((x,i) => $"{x}x^{coefficientsCount - i}"));
+        var degree = _coefficients.Count - 1;
+        return $"{_coefficients[0]}x^{degree}{string.Join("", _coefficients.Skip(1).SkipLast(1).Select((c, i) => $" + ({c})x^{degree - i}"))} + ({_coefficients[^1]})";
     }
 }
