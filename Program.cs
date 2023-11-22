@@ -24,6 +24,7 @@ public class Program
             .BuildServiceProvider();
 
         var app = serviceProvider.GetRequiredService<Application>();
+
         app.Start();
     }
 

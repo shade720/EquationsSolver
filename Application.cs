@@ -1,6 +1,5 @@
 ﻿using EquationsSolver.Abstractions;
 using EquationsSolver.Options;
-using Serilog;
 
 namespace EquationsSolver;
 
@@ -34,7 +33,7 @@ public class Application
             if (result.IsSolvedSuccessful)
                 solvingResultsPresenter.ShowResults(result);
             else 
-                Log.Logger.Error("Не удалось решить уравнение {0}", equation.ToString());
+                Console.WriteLine($"Не удалось решить уравнение '{equation}'. Возможно уравнение имеет неверный порядок.");
         }
     }
 }

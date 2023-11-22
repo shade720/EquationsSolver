@@ -1,28 +1,27 @@
 ﻿using System.Globalization;
 using EquationsSolver.Abstractions;
+using EquationsSolver.Exceptions;
 
 namespace EquationsSolver.Models.Readers;
 
 public class EquationParser : IEquationParser
 {
-    public Equation? Parse(string coefficientLine)
+    public Equation Parse(string coefficientLine)
     {
-        var coefficients = coefficientLine
+        if (string.IsNullOrEmpty(coefficientLine))
+            throw new ArgumentNullException(coefficientLine, nameof(Parse));
+
+        var parsedCoefficients = coefficientLine
             .Split(' ')
-            .ToList();
-        var expectedCoefficientsCount = coefficients.Count;
+            .Aggregate(new List<double>(), (list, value) =>
+            {
+                if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
+                    list.Add(result);
+                else
+                    throw new EquationParseException($"Коэффициент '{value}' введен неверно.");
+                return list;
+            });
 
-        var parsedCoefficients = coefficients.Aggregate(new List<double>(), (list, value) =>
-        {
-            if (double.TryParse(value, NumberStyles.Any, CultureInfo.InvariantCulture, out var result))
-                list.Add(result);
-            else
-                Console.WriteLine($"Коэффициент '{value}' введен неверно.");
-            return list;
-        });
-
-        return parsedCoefficients.Count == expectedCoefficientsCount 
-            ? new Equation(parsedCoefficients) 
-            : null;
+        return new Equation(parsedCoefficients);
     }
 }
