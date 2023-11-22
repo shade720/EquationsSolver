@@ -2,5 +2,5 @@
 
 public interface ISolvingResultsPresenterFactory
 {
-    public ISolvingResultsPresenter CreateEquationPresenter();
+    public ISolvingResultsPresenter CreatePresenter();
 }

@@ -5,6 +5,6 @@ namespace EquationsSolver.Factories;
 
 public class SolvingResultsPresenterFactory : ISolvingResultsPresenterFactory
 {
-    public ISolvingResultsPresenter CreateEquationPresenter() 
+    public ISolvingResultsPresenter CreatePresenter() 
         => new ConsoleSolvingResultsPresenter();
 }
