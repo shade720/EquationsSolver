@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.ConsoleUI",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{05624424-D146-4D7B-9601-8267754C2C7E}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.Aplication.Tests", "Tests\EquationsSolverTests\EquationsSolver.Aplication.Tests.csproj", "{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.Application.Tests", "Tests\EquationsSolverTests\EquationsSolver.Application.Tests.csproj", "{F22ECEB6-C5EA-4FC5-ABDE-B7C4B436C0F6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EquationsSolver.Domain", "EquationsSolver.Domain\EquationsSolver.Domain.csproj", "{EF2E8581-5449-4F34-A6B9-161E553F6FE7}"
 EndProject

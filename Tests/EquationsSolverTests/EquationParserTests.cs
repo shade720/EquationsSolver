@@ -1,7 +1,7 @@
 using EquationsSolver.Application.Readers;
 using EquationsSolver.Domain.Exceptions;
 
-namespace EquationsSolverTests;
+namespace EquationsSolver.Application.Tests;
 
 public class EquationParserTests
 {
