@@ -37,7 +37,10 @@ public sealed class App
             SolveParallel(equationsReader, _equationSolver, _solvingResultsPresenter);
     }
 
-    private void SolveSequential(IEquationsReader equationsReader, IEquationSolver solver, ISolvingResultsPresenter solvingResultsPresenter)
+    private void SolveSequential(
+        IEquationsReader equationsReader, 
+        IEquationSolver solver, 
+        ISolvingResultsPresenter solvingResultsPresenter)
     {
         _logger.LogInformation("Используется последовательный режим\r\n");
         foreach (var equation in equationsReader.Read())
@@ -47,7 +50,10 @@ public sealed class App
         }
     }
 
-    private void SolveParallel(IEquationsReader equationsReader, IEquationSolver solver, ISolvingResultsPresenter solvingResultsPresenter)
+    private void SolveParallel(
+        IEquationsReader equationsReader, 
+        IEquationSolver solver, 
+        ISolvingResultsPresenter solvingResultsPresenter)
     {
         _logger.LogInformation("Используется параллельный режим\r\n");
         var results = new ConcurrentBag<EquationSolvingResult>();

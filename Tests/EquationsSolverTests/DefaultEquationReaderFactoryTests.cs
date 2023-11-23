@@ -22,7 +22,7 @@ public class DefaultEquationReaderFactoryTests
     public void CreateEquationsReader_CorrectSourcePath_SuccessfullyCreated()
     {
         // Arrange
-        const string testSourcePath = "E:\\Projects\\EquationsSolver\\Tests\\EquationsSolverTests\\TestFiles\\empty_file.txt";
+        const string testSourcePath = @".\TestFiles\empty_file.txt";
 
         // Act
         var actualReader = _sut.CreateEquationsReader(testSourcePath);
@@ -35,7 +35,7 @@ public class DefaultEquationReaderFactoryTests
     public void CreateEquationsReader_IncorrectSourcePath_ArgumentException()
     {
         // Arrange
-        const string incorrectSourcePath = "E:\\Projects\\EquationsSolver\\Tests|EquationsSolverTests\\TestFiles\\empty_file.txt";
+        const string incorrectSourcePath = @".\TestFiles|empty_file.txt";
         var emptySourcePath = string.Empty;
 
         // Act, Assert
@@ -47,7 +47,7 @@ public class DefaultEquationReaderFactoryTests
     public void CreateEquationsReader_NullEquationParser_ArgumentException()
     {
         // Arrange
-        const string testSourcePath = "E:\\Projects\\EquationsSolver\\Tests\\EquationsSolverTests\\TestFiles\\empty_file.txt";
+        const string testSourcePath = @".\TestFiles\empty_file.txt";
         var localSut = new DefaultEquationReaderFactory(_loggerMock.Object, null);
 
         // Act, Assert
@@ -58,7 +58,7 @@ public class DefaultEquationReaderFactoryTests
     public void CreateEquationsReader_NullLogger_ArgumentException()
     {
         // Arrange
-        const string testSourcePath = "E:\\Projects\\EquationsSolver\\Tests\\EquationsSolverTests\\TestFiles\\empty_file.txt";
+        const string testSourcePath = @".\TestFiles\empty_file.txt";
         var localSut = new DefaultEquationReaderFactory(null, _equationParserMock.Object);
 
         // Act, Assert

@@ -13,8 +13,8 @@ public class FileEquationsReaderTests
     private readonly Mock<ILogger> _loggerMock;
     private readonly Mock<IEquationParser> _equationParserMock;
 
-    private const string TestFile = @"E:\Projects\EquationsSolver\Tests\EquationsSolverTests\TestFiles\test_equations.txt";
-    private const string EmptyFile = @"E:\Projects\EquationsSolver\Tests\EquationsSolverTests\TestFiles\empty_file.txt";
+    private const string TestFile = @".\TestFiles\test_equations.txt";
+    private const string EmptyFile = @".\TestFiles\empty_file.txt";
 
     public FileEquationsReaderTests()
     {

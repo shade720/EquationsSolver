@@ -19,7 +19,7 @@ public sealed class FileEquationsReader : IEquationsReader
             throw new ArgumentNullException(nameof(filename));
         _filename = filename;
         _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        _equationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser)); ;
+        _equationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser));
     }
 
     public IEnumerable<Equation> Read()
