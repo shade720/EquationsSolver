@@ -33,7 +33,7 @@ public sealed class DefaultSolvingResultsPresenter : ISolvingResultsPresenter
                 break;
             case > 1:
                 _logger.LogInformation("Уравнение {0}. Действительных корней - {1}. Корни: {2}", 
-                    result.OriginalEquation, roots.Length, string.Join(", ", roots));
+                    result.OriginalEquation, roots.Length, string.Join("; ", roots));
                 break;
         }
     }
