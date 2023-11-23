@@ -15,9 +15,11 @@ public sealed class FileEquationsReader : IEquationsReader
         ILogger logger,
         IEquationParser equationParser)
     {
+        if (string.IsNullOrEmpty(filename))
+            throw new ArgumentNullException(nameof(filename));
         _filename = filename;
-        _logger = logger;
-        _equationParser = equationParser;
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _equationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser)); ;
     }
 
     public IEnumerable<Equation> Read()
