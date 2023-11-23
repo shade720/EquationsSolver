@@ -1,5 +1,6 @@
 ﻿using CommandLine;
 using EquationsSolver.Application;
+using EquationsSolver.Application.Presenters;
 using EquationsSolver.Application.Readers;
 using EquationsSolver.Application.Solvers;
 using EquationsSolver.Domain.Abstractions;
@@ -15,7 +16,9 @@ public class Program
 {
     public static void Main(string[] args)
     {
-        if (!TryParseArgs(args, out var options))
+        if (!TryParseArgs(args, out var consoleOptions))
+            return;
+        if (!TryValidateArgs(consoleOptions, out var options))
             return;
 
         Log.Logger = new LoggerConfiguration()
@@ -35,7 +38,8 @@ public class Program
             .AddTransient<IEquationParser, EquationParser>()
             .AddTransient<IEquationReaderFactory, ConsoleEquationReaderFactory>()
             .AddTransient<IEquationSolver, QuadraticEquationSolver>()
-            .AddTransient<ISolvingResultsPresenter, ConsoleSolvingResultsPresenter>()
+            .AddTransient<ISolvingResultsPresenter, DefaultSolvingResultsPresenter>()
+            //.AddTransient<ISolvingResultsPresenter, ConsoleSolvingResultsPresenter>()
             .AddTransient<App>()
             .BuildServiceProvider();
 
@@ -43,7 +47,7 @@ public class Program
         app.Start();
     }
 
-    private static bool TryParseArgs(string[] args, out SolverOptions options)
+    private static bool TryParseArgs(string[] args, out ConsoleSolverOptions options)
     {
         var parser = new Parser(with =>
         {
@@ -52,13 +56,33 @@ public class Program
         });
 
         var parserResult = parser.ParseArguments<ConsoleSolverOptions>(args);
+        
+        options = parserResult.Value;
+
+        return parserResult.Tag == ParserResultType.Parsed;
+    }
+
+    private static bool TryValidateArgs(ConsoleSolverOptions consoleOptions, out SolverOptions options)
+    {
+        options = new SolverOptions();
+
+        if (consoleOptions.EquationsFileName is not null && !File.Exists(consoleOptions.EquationsFileName))
+        {
+            Console.WriteLine($"Не найден файл с уравнениями. Путь '{consoleOptions.EquationsFileName}'.");
+            return false;
+        }
+
+        if (consoleOptions.EquationsFileName is null && consoleOptions.ThreadsNumber is not null)
+        {
+            Console.WriteLine("Параллельное вычисление возможно только при чтении из файла (отсутствует параметр -f <path> или --file <path>).");
+            return false;
+        }
 
         options = new SolverOptions
         {
-            ThreadsNumber = parserResult.Value?.ThreadsNumber,
-            EquationsFileName = parserResult.Value?.EquationsFileName
+            EquationsFileName = consoleOptions?.EquationsFileName,
+            ThreadsNumber = consoleOptions?.ThreadsNumber,
         };
-
-        return parserResult.Tag == ParserResultType.Parsed;
+        return true;
     }
 }

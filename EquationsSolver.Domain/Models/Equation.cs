@@ -18,6 +18,6 @@ public class Equation
     public override string ToString()
     {
         var degree = _coefficients.Count - 1;
-        return $"{_coefficients[0]}x^{degree}{string.Join("", _coefficients.Skip(1).SkipLast(1).Select((c, i) => $" + ({c})x^{degree - i}"))} + ({_coefficients[^1]})";
+        return $"{_coefficients[0]}x^{degree}{string.Join("", _coefficients.Skip(1).SkipLast(1).Select((c, i) => $" + ({c})x^{degree - i - 1}"))} + ({_coefficients[^1]})";
     }
 }

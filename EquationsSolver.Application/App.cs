@@ -29,18 +29,6 @@ public class App
 
     public void Start()
     {
-        if (_options.EquationsFileName is not null && !File.Exists(_options.EquationsFileName))
-        {
-            _logger.LogCritical($"Не найден файл с уравнениями. Путь '{_options.EquationsFileName}'.");
-            return;
-        }
-
-        if (_options.EquationsFileName is null && _options.ThreadsNumber is not null)
-        {
-            _logger.LogCritical("Параллельное вычисление возможно только при чтении из файла (отсутствует параметр -f <path> или --file <path>).");
-            return;
-        }
-
         var equationsReader = _equationReaderFactory.CreateEquationsReader(_options.EquationsFileName);
 
         if (_options.EquationsFileName is null || _options.ThreadsNumber is null)

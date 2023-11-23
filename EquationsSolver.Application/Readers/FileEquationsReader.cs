@@ -33,7 +33,7 @@ public class FileEquationsReader : IEquationsReader
 
             if (string.IsNullOrEmpty(coefficientLine))
             {
-                _logger.LogError($"Строка №{linesCounter} содержит ошибку. Уравнение будет пропущено.");
+                _logger.LogError("Строка №{0} содержит ошибку. Уравнение будет пропущено.", linesCounter);
                 continue;
             }
 
@@ -44,11 +44,11 @@ public class FileEquationsReader : IEquationsReader
             }
             catch (Exception e)
             {
-                _logger.LogError($"Строка {linesCounter}. Ошибка парсинга уравнения '{e.Message}'. Уравнение будет пропущено.");
+                _logger.LogError("Строка {0}. Ошибка парсинга уравнения '{1}'. Уравнение будет пропущено.", linesCounter, e.Message);
                 continue;
             }
 
-            _logger.LogInformation($"Получено уравнение {parsedEquation}.\r\n");
+            _logger.LogInformation("Получено уравнение {0}.", parsedEquation);
             yield return parsedEquation;
         }
     }
