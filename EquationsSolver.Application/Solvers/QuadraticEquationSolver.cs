@@ -3,7 +3,7 @@ using EquationsSolver.Domain.Models;
 
 namespace EquationsSolver.Application.Solvers;
 
-public class QuadraticEquationSolver : IEquationSolver
+public sealed class QuadraticEquationSolver : IEquationSolver
 {
     public EquationSolvingResult Solve(Equation equation)
     {

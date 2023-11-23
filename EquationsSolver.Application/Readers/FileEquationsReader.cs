@@ -3,7 +3,7 @@ using EquationsSolver.Domain.Models;
 using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.Application.Readers;
-public class FileEquationsReader : IEquationsReader
+public sealed class FileEquationsReader : IEquationsReader
 {
     private readonly string _filename;
 

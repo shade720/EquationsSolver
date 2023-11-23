@@ -5,7 +5,7 @@ using EquationsSolver.Domain.Models;
 
 namespace EquationsSolver.Application.Readers;
 
-public class EquationParser : IEquationParser
+public sealed class EquationParser : IEquationParser
 {
     public Equation Parse(string coefficientLine)
     {

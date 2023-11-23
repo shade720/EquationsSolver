@@ -2,7 +2,7 @@
 
 public class EquationSolvingResult
 {
-    public Equation OriginalEquation { get; set; }
-    public bool IsSolvedSuccessful { get; set; }
-    public ICollection<double> Roots { get; set; }
+    public Equation OriginalEquation { get; init; }
+    public bool IsSolvedSuccessful { get; init; }
+    public ICollection<double> Roots { get; init; }
 }

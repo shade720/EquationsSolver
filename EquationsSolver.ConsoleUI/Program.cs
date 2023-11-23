@@ -26,15 +26,13 @@ public class Program
             .WriteTo.Console()
             .CreateLogger();
 
-        // Регистрируем Serilog при создании Microsoft.Extensions.Logging.LoggerFactory
-        using var loggerFactory = LoggerFactory.Create(
-            builder => builder.AddSerilog(dispose: true));
-        // Создаем экземпляр ILogger при помощи фабрики
+        using var loggerFactory = LoggerFactory.Create(builder => builder.AddSerilog(dispose: true));
+        
         var logger = loggerFactory.CreateLogger<Program>();
 
         var serviceProvider = new ServiceCollection()
-            .AddSingleton<ILogger>(logger)
             .AddSingleton(options)
+            .AddSingleton<ILogger>(logger)
             .AddTransient<IEquationParser, EquationParser>()
             .AddTransient<IEquationReaderFactory, ConsoleEquationReaderFactory>()
             .AddTransient<IEquationSolver, QuadraticEquationSolver>()

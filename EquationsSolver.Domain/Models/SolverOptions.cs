@@ -2,6 +2,6 @@
 
 public class SolverOptions
 {
-    public string? EquationsFileName { get; set; }
-    public int? ThreadsNumber { get; set; }
+    public string? EquationsFileName { get; init; }
+    public int? ThreadsNumber { get; init; }
 }

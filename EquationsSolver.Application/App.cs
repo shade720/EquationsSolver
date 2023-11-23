@@ -5,7 +5,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.Application;
 
-public class App
+public sealed class App
 {
     private readonly SolverOptions _options;
     private readonly ILogger _logger;

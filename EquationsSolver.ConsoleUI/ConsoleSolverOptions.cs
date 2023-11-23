@@ -2,7 +2,7 @@
 
 namespace EquationsSolver.ConsoleUI;
 
-public class ConsoleSolverOptions
+public sealed class ConsoleSolverOptions
 {
     [Option('f', "filename", Required = false, HelpText = "Путь к файлу, в котором записаны уравнения.")]
     public string? EquationsFileName { get; set; }

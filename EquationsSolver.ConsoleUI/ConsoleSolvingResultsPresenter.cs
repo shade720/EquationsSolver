@@ -3,7 +3,7 @@ using EquationsSolver.Domain.Models;
 
 namespace EquationsSolver.ConsoleUI;
 
-public class ConsoleSolvingResultsPresenter : ISolvingResultsPresenter
+public sealed class ConsoleSolvingResultsPresenter : ISolvingResultsPresenter
 {
     public void ShowResults(EquationSolvingResult result)
     {

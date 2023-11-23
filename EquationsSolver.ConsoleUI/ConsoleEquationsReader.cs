@@ -3,7 +3,7 @@ using EquationsSolver.Domain.Models;
 
 namespace EquationsSolver.ConsoleUI;
 
-public class ConsoleEquationsReader : IEquationsReader
+public sealed class ConsoleEquationsReader : IEquationsReader
 {
     private readonly IEquationParser _equationParser;
 

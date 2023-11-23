@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.Application.Presenters;
 
-public class DefaultSolvingResultsPresenter : ISolvingResultsPresenter
+public sealed class DefaultSolvingResultsPresenter : ISolvingResultsPresenter
 {
     private readonly ILogger _logger;
 

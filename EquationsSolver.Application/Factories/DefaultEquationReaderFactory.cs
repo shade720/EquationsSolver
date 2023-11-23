@@ -4,7 +4,7 @@ using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.Application.Factories;
 
-public class DefaultEquationReaderFactory : IEquationReaderFactory
+public sealed class DefaultEquationReaderFactory : IEquationReaderFactory
 {
     private readonly ILogger _logger;
     private readonly IEquationParser _equationParser;
