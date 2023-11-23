@@ -18,7 +18,7 @@ public class Program
     {
         if (!TryParseArgs(args, out var consoleOptions))
             return;
-        if (!TryValidateArgs(consoleOptions, out var options))
+        if (!TryValidateOptions(consoleOptions, out var options))
             return;
 
         Log.Logger = new LoggerConfiguration()
@@ -60,7 +60,7 @@ public class Program
         return parserResult.Tag == ParserResultType.Parsed;
     }
 
-    private static bool TryValidateArgs(ConsoleSolverOptions consoleOptions, out SolverOptions options)
+    private static bool TryValidateOptions(ConsoleSolverOptions consoleOptions, out SolverOptions options)
     {
         options = new SolverOptions();
 
@@ -72,7 +72,7 @@ public class Program
 
         if (consoleOptions.EquationsFileName is null && consoleOptions.ThreadsNumber is not null)
         {
-            Console.WriteLine("Параллельное вычисление возможно только при чтении из файла (отсутствует параметр -f <path> или --file <path>).");
+            Console.WriteLine("Параллельное вычисление возможно только при чтении уравнений из файла (отсутствует параметр -f <path> или --file <path>).");
             return false;
         }
 
