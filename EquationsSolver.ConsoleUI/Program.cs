@@ -5,17 +5,32 @@ using EquationsSolver.Application.Solvers;
 using EquationsSolver.Domain.Abstractions;
 using EquationsSolver.Domain.Models;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Serilog;
+using ILogger = Microsoft.Extensions.Logging.ILogger;
 
 namespace EquationsSolver.ConsoleUI;
 
-public static class Program
+public class Program
 {
     public static void Main(string[] args)
     {
         if (!TryParseArgs(args, out var options))
             return;
 
+        Log.Logger = new LoggerConfiguration()
+            .MinimumLevel.Information()
+            .WriteTo.Console()
+            .CreateLogger();
+
+        // Регистрируем Serilog при создании Microsoft.Extensions.Logging.LoggerFactory
+        using var loggerFactory = LoggerFactory.Create(
+            builder => builder.AddSerilog(dispose: true));
+        // Создаем экземпляр ILogger при помощи фабрики
+        var logger = loggerFactory.CreateLogger<Program>();
+
         var serviceProvider = new ServiceCollection()
+            .AddSingleton<ILogger>(logger)
             .AddSingleton(options)
             .AddTransient<IEquationParser, EquationParser>()
             .AddTransient<IEquationReaderFactory, ConsoleEquationReaderFactory>()

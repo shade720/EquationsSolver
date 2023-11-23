@@ -1,40 +1,54 @@
 ﻿using EquationsSolver.Domain.Abstractions;
 using EquationsSolver.Domain.Models;
+using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.Application.Readers;
 public class FileEquationsReader : IEquationsReader
 {
-    private readonly IEquationParser _equationParser;
     private readonly string _filename;
+
+    private readonly ILogger _logger;
+    private readonly IEquationParser _equationParser;
 
     public FileEquationsReader(
         string filename,
+        ILogger logger,
         IEquationParser equationParser)
     {
         _filename = filename;
+        _logger = logger;
         _equationParser = equationParser;
     }
 
     public IEnumerable<Equation> Read()
     {
+        _logger.LogInformation("Осуществляется ввод уравнений из файла...\r\n");
+
         using var sr = new StreamReader(_filename);
+        var linesCounter = 0;
         while (!sr.EndOfStream)
         {
+            linesCounter++;
             var coefficientLine = sr.ReadLine();
 
             if (string.IsNullOrEmpty(coefficientLine))
+            {
+                _logger.LogError($"Строка №{linesCounter} содержит ошибку. Уравнение будет пропущено.");
                 continue;
+            }
 
             Equation parsedEquation;
             try
             {
                 parsedEquation = _equationParser.Parse(coefficientLine);
             }
-            catch (Exception)
+            catch (Exception e)
             {
+                _logger.LogError($"Строка {linesCounter}. Ошибка парсинга уравнения '{e.Message}'. Уравнение будет пропущено.");
                 continue;
             }
 
+            _logger.LogInformation($"Получено уравнение {parsedEquation}.\r\n");
             yield return parsedEquation;
         }
     }

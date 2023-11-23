@@ -1,14 +1,19 @@
 ﻿using EquationsSolver.Application.Readers;
 using EquationsSolver.Domain.Abstractions;
+using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.Application.Factories;
 
 public class DefaultEquationReaderFactory : IEquationReaderFactory
 {
+    private readonly ILogger _logger;
     private readonly IEquationParser _equationParser;
 
-    public DefaultEquationReaderFactory(IEquationParser equationParser)
+    public DefaultEquationReaderFactory(
+        ILogger logger,
+        IEquationParser equationParser)
     {
+        _logger = logger;
         _equationParser = equationParser;
     }
 
@@ -20,6 +25,6 @@ public class DefaultEquationReaderFactory : IEquationReaderFactory
         if (equationsSourcePath.IndexOfAny(Path.GetInvalidPathChars()) == -1)
             throw new ArgumentException($"Параметр {nameof(equationsSourcePath)} не является путем к файлу.");
 
-        return new FileEquationsReader(equationsSourcePath, _equationParser);
+        return new FileEquationsReader(equationsSourcePath, _logger, _equationParser);
     }
 }
