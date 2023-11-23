@@ -5,8 +5,7 @@
       "distributionName": ""
     },
     "EquationsSolver.ConsoleUI": {
-      "commandName": "Project",
-      "commandLineArgs": "-p 4"
+      "commandName": "Project"
     }
   }
 }
