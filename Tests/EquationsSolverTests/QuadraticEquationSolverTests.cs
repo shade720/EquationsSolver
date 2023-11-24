@@ -24,7 +24,7 @@ public class QuadraticEquationSolverTests
         var actualSolvingResult = _sut.Solve(testEquation);
 
         // Assert
-        Assert.Equal(expectedSolvingResult.IsSolvedSuccessful, actualSolvingResult.IsSolvedSuccessful);
+        Assert.True(actualSolvingResult.IsSolvedSuccessful);
         Assert.Equal(expectedSolvingResult.OriginalEquation, actualSolvingResult.OriginalEquation);
         Assert.Equal(expectedSolvingResult.Roots, actualSolvingResult.Roots, (e,a) => Math.Abs(e - a) < Epsilon);
     }
@@ -45,7 +45,7 @@ public class QuadraticEquationSolverTests
         var actualSolvingResult = _sut.Solve(testEquation);
 
         // Assert
-        Assert.Equal(expectedSolvingResult.IsSolvedSuccessful, actualSolvingResult.IsSolvedSuccessful);
+        Assert.True(actualSolvingResult.IsSolvedSuccessful);
         Assert.Equal(expectedSolvingResult.OriginalEquation, actualSolvingResult.OriginalEquation);
 
         Assert.Single(actualSolvingResult.Roots);
@@ -68,7 +68,7 @@ public class QuadraticEquationSolverTests
         var actualSolvingResult = _sut.Solve(testEquation);
 
         // Assert
-        Assert.Equal(expectedSolvingResult.IsSolvedSuccessful, actualSolvingResult.IsSolvedSuccessful);
+        Assert.True(actualSolvingResult.IsSolvedSuccessful);
         Assert.Equal(expectedSolvingResult.OriginalEquation, actualSolvingResult.OriginalEquation);
 
         Assert.Empty(actualSolvingResult.Roots);

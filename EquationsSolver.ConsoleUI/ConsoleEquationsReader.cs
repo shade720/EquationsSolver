@@ -15,7 +15,6 @@ public sealed class ConsoleEquationsReader : IEquationsReader
 
     public IEnumerable<Equation> Read()
     {
-
         Console.WriteLine("Осуществляется ввод уравнений с консоли (в формате: ввод -> решение -> ввод...).");
         Console.WriteLine("Вводите коэффициенты уравнения через пробел в одной строке (значения с плавающей запятой вводятся через '.').");
         Console.WriteLine("Например: 2 0 1.5");

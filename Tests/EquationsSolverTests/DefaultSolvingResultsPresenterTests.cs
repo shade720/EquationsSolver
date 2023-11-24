@@ -72,7 +72,6 @@ public class DefaultSolvingResultsPresenterTests
     public void ShowingResults_ResultWithNoRoots_LogMessageWithNoRoots()
     {
         // Arrange
-
         var testEquation = new Equation(new[] { 1, 0, 1.0 });
         var testSolvingResults = new EquationSolvingResult
         {
@@ -99,7 +98,6 @@ public class DefaultSolvingResultsPresenterTests
     public void ShowingResults_UnsuccessfulResult_LogMessageAboutUnsuccessfulResult()
     {
         // Arrange
-
         var testEquation = new Equation(new[] { 1.0, 0 });
         var testSolvingResults = new EquationSolvingResult
         {
