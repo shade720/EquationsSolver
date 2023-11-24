@@ -1,38 +1,39 @@
 # EquationsSolver
 
-This application is designed to solve quadratic equations by given coefficients. Coefficients are set from a file or console.
+Данное приложение разработано, чтобы решать квадратичные уравнения по предоставляемым коэффициентам. Коэффициенты задаются в файле или консоли.
 
 ## Usage
 
-Launch the application with console input
+Запуск приложения с консольным вводом (производится без параметров). Пример:
 ```
 EquationsSolver
 ```
-The path to the file where the equations are stored.
+При указании параметра -f <путь> или --file <путь>, коэффициенты уравнения вводятся из указанного файла. Пример:
 ```
 EquationsSolver -f ./equations.txt
 ```
-Or
+Или
 ```
 EquationsSolver --file ./equations.txt
 ```
-Calculations will be performed in parallel in the specified number of threads. The parameter is not available for console input.
+При указании параметра -p <число_потоков> или --parallel <число_потоков> вычисления будут осуществляються параллельно в указаном числе потоков.
+*Параметр не доступен для консольного ввода.*
 ```
 EquationsSolver -f ./equations.txt -p 4
 ```
-Or
+Или
 ```
 EquationsSolver --file ./equations.txt --parallel 4
 ```
-Display this help screen.
+При указании параметра --help будет выведена подсказка по поддерживаемым параметрам. Пример:
 ```
 EquationsSolver --help
 ```
-Display version information.
+При указании параметра --version будет выведена текущая версия приложения.
 ```
 EquationsSolver --version
 ```
-## Technology stack:
+## Применяемые технологии:
 * .NET 7
 * Serilog.Sinks.Console
 * Microsoft.DependencyInjection
