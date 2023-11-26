@@ -3,12 +3,12 @@ using EquationsSolver.Domain.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace EquationsSolver.Application.Tests;
+namespace EquationsSolver.Application.UnitTests;
 
 public class AppTests : IClassFixture<TestDataFixture>
 {
     private App _sut;
-    
+
     private readonly Mock<ILogger> _loggerMock = new();
     private readonly Mock<IEquationReaderFactory> _equationReaderFactoryMock = new();
     private readonly Mock<IEquationSolver> _equationSolverMock = new();
@@ -33,11 +33,11 @@ public class AppTests : IClassFixture<TestDataFixture>
             EquationsFileName = TestDataFixture.FakeEquationSourcePath,
             ThreadsNumber = null
         };
-        
+
         _sut = new App(
-            options, 
-            _loggerMock.Object, 
-            _equationReaderFactoryMock.Object, 
+            options,
+            _loggerMock.Object,
+            _equationReaderFactoryMock.Object,
             _equationSolverMock.Object,
             _solvingResultsPresenterMock.Object);
 

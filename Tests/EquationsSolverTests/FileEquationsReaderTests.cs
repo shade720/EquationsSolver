@@ -5,7 +5,7 @@ using EquationsSolver.Domain.Models;
 using Microsoft.Extensions.Logging;
 using Moq;
 
-namespace EquationsSolver.Application.Tests;
+namespace EquationsSolver.Application.UnitTests;
 
 public class FileEquationsReaderTests
 {
