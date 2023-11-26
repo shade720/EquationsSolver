@@ -1,7 +1,7 @@
 ﻿using EquationsSolver.Application.Solvers;
 using EquationsSolver.Domain.Models;
 
-namespace EquationsSolver.Application.Tests;
+namespace EquationsSolver.Application.UnitTests;
 
 public class QuadraticEquationSolverTests
 {
@@ -26,7 +26,7 @@ public class QuadraticEquationSolverTests
         // Assert
         Assert.True(actualSolvingResult.IsSolvedSuccessful);
         Assert.Equal(expectedSolvingResult.OriginalEquation, actualSolvingResult.OriginalEquation);
-        Assert.Equal(expectedSolvingResult.Roots, actualSolvingResult.Roots, (e,a) => Math.Abs(e - a) < Epsilon);
+        Assert.Equal(expectedSolvingResult.Roots, actualSolvingResult.Roots, (e, a) => Math.Abs(e - a) < Epsilon);
     }
 
     [Fact]
@@ -107,7 +107,7 @@ public class QuadraticEquationSolverTests
         Assert.Empty(actualLowerDegreeEquationSolvingResult.Roots);
 
         Assert.Equal(
-            actualHigherDegreeEquationSolvingResult.OriginalEquation, 
+            actualHigherDegreeEquationSolvingResult.OriginalEquation,
             higherDegreeExpectedSolvingResult.OriginalEquation);
         Assert.Equal(
             actualLowerDegreeEquationSolvingResult.OriginalEquation,
