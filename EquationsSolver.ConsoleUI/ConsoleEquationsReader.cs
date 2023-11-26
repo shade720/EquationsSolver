@@ -1,54 +1,56 @@
 ﻿using EquationsSolver.Domain.Abstractions;
 using EquationsSolver.Domain.Models;
+using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.ConsoleUI;
 
-public sealed class ConsoleEquationsReader : IEquationsReader
+public sealed class ConsoleEquationsReader : EquationsReaderBase
 {
-    private readonly IEquationParser _equationParser;
-
     public ConsoleEquationsReader(
-        IEquationParser equationParser)
-    {
-        _equationParser = equationParser;
-    }
+        ILogger logger, 
+        IEquationParser equationParser) 
+        : base(logger, equationParser) { }
 
-    public IEnumerable<Equation> Read()
+    public override IEnumerable<Equation> Read()
     {
-        Console.WriteLine("Осуществляется ввод уравнений с консоли (в формате: ввод -> решение -> ввод...).");
-        Console.WriteLine("Вводите коэффициенты уравнения через пробел в одной строке (значения с плавающей запятой вводятся через '.').");
-        Console.WriteLine("Например: 2 0 1.5");
+        Logger.LogInformation("Осуществляется ввод уравнений с консоли (в формате: ввод -> решение -> ввод...).");
+        Logger.LogInformation("Вводите коэффициенты уравнения через пробел в одной строке (значения с плавающей запятой вводятся через '.').");
+        Logger.LogInformation("Например: 2 0 1.5");
 
         var exitKey = default(ConsoleKey);
 
         while (exitKey != ConsoleKey.Escape)
         {
-            Console.WriteLine();
-            Console.Write("Введите коэффициенты: ");
+            Console.Write("\r\nВведите коэффициенты: ");
             var coefficientLine = Console.ReadLine();
 
             if (string.IsNullOrEmpty(coefficientLine))
             {
-                Console.WriteLine("Коэффициенты введены неверно");
+                Logger.LogError("Коэффициенты введены неверно");
                 continue;
             }
 
             Equation parsedEquation;
             try
             {
-                parsedEquation = _equationParser.Parse(coefficientLine);
+                parsedEquation = EquationParser.Parse(coefficientLine);
             }
             catch (Exception e)
             {
-                Console.WriteLine($"Ошибка парсинга уравнения '{e.Message}'. Уравнение будет пропущено.");
+                Logger.LogError($"Ошибка парсинга уравнения '{e.Message}'. Уравнение будет пропущено.");
                 continue;
             }
 
-            Console.WriteLine($"Получено уравнение {parsedEquation}");
+            Logger.LogInformation($"Получено уравнение {parsedEquation}");
             yield return parsedEquation;
 
-            Console.WriteLine("Нажмите любую клавишу, чтобы продолжить. Нажмите клавишу Esc, чтобы остановить выполение.");
+            Logger.LogInformation("Нажмите любую клавишу, чтобы продолжить. Нажмите клавишу Esc, чтобы остановить выполение.");
             exitKey = Console.ReadKey().Key;
         }
+    }
+
+    protected override Stream OpenEquationsSource()
+    {
+        return Console.OpenStandardInput();
     }
 }

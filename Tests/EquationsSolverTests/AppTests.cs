@@ -13,13 +13,15 @@ public class AppTests : IClassFixture<TestDataFixture>
     private readonly Mock<IEquationReaderFactory> _equationReaderFactoryMock = new();
     private readonly Mock<IEquationSolver> _equationSolverMock = new();
     private readonly Mock<ISolvingResultsPresenter> _solvingResultsPresenterMock = new();
-    private readonly Mock<IEquationsReader> _equationsReaderMock = new();
+    private readonly Mock<IEquationParser> _equationParserMock = new();
+    private readonly Mock<EquationsReaderBase> _equationsReaderBaseMock;
 
     private readonly TestDataFixture _testDataFixture;
 
     public AppTests(TestDataFixture testDataFixture)
     {
         _testDataFixture = testDataFixture;
+        _equationsReaderBaseMock = new Mock<EquationsReaderBase>(_loggerMock.Object, _equationParserMock.Object);
     }
 
     [Fact]
@@ -43,8 +45,8 @@ public class AppTests : IClassFixture<TestDataFixture>
 
         _equationReaderFactoryMock
             .Setup(x => x.CreateEquationsReader(TestDataFixture.FakeEquationSourcePath))
-            .Returns(_equationsReaderMock.Object);
-        _equationsReaderMock
+            .Returns(_equationsReaderBaseMock.Object);
+        _equationsReaderBaseMock
             .Setup(x => x.Read())
             .Returns(_testDataFixture.TestEquations);
         _equationSolverMock
@@ -59,7 +61,7 @@ public class AppTests : IClassFixture<TestDataFixture>
 
         // Assert
         _equationReaderFactoryMock.Verify(x => x.CreateEquationsReader(TestDataFixture.FakeEquationSourcePath), Times.Once);
-        _equationsReaderMock.Verify(x => x.Read(), Times.Once);
+        _equationsReaderBaseMock.Verify(x => x.Read(), Times.Once);
         _equationSolverMock.Verify(x => x.Solve(_testDataFixture.TestEquations[0]), Times.Once);
         _equationSolverMock.Verify(x => x.Solve(_testDataFixture.TestEquations[1]), Times.Once);
         _solvingResultsPresenterMock.Verify(x => x.ShowResults(_testDataFixture.TestResults[0]), Times.Once);
@@ -95,8 +97,8 @@ public class AppTests : IClassFixture<TestDataFixture>
 
         _equationReaderFactoryMock
             .Setup(x => x.CreateEquationsReader(TestDataFixture.FakeEquationSourcePath))
-            .Returns(_equationsReaderMock.Object);
-        _equationsReaderMock
+            .Returns(_equationsReaderBaseMock.Object);
+        _equationsReaderBaseMock
             .Setup(x => x.Read())
             .Returns(_testDataFixture.TestEquations);
         _equationSolverMock
@@ -111,7 +113,7 @@ public class AppTests : IClassFixture<TestDataFixture>
 
         // Assert
         _equationReaderFactoryMock.Verify(x => x.CreateEquationsReader(TestDataFixture.FakeEquationSourcePath), Times.Once);
-        _equationsReaderMock.Verify(x => x.Read(), Times.Once);
+        _equationsReaderBaseMock.Verify(x => x.Read(), Times.Once);
         _equationSolverMock.Verify(x => x.Solve(_testDataFixture.TestEquations[0]), Times.Once);
         _equationSolverMock.Verify(x => x.Solve(_testDataFixture.TestEquations[1]), Times.Once);
         _solvingResultsPresenterMock.Verify(x => x.ShowResults(_testDataFixture.TestResults[0]), Times.Once);

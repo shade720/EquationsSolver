@@ -5,8 +5,7 @@
       "distributionName": ""
     },
     "EquationsSolver.ConsoleUI": {
-      "commandName": "Project",
-      "commandLineArgs": "-f E:\\Projects\\EquationsSolver\\EquationsSolver.ConsoleUI\\equations.txt"
+      "commandName": "Project"
     }
   }
 }

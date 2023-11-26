@@ -8,23 +8,20 @@ public sealed class ConsoleEquationReaderFactory : IEquationReaderFactory
 {
     private readonly ILogger _logger;
     private readonly IEquationParser _equationParser;
-    private readonly IStreamReaderFactory _streamReaderFactory;
 
     public ConsoleEquationReaderFactory(
         ILogger logger,
-        IEquationParser equationParser, 
-        IStreamReaderFactory streamReaderFactory)
+        IEquationParser equationParser)
     {
         _logger = logger;
         _equationParser = equationParser;
-        _streamReaderFactory = streamReaderFactory;
     }
 
-    public IEquationsReader CreateEquationsReader(string? equationsSourcePath)
+    public EquationsReaderBase CreateEquationsReader(string? equationsSourcePath)
     {
         if (!string.IsNullOrEmpty(equationsSourcePath) && equationsSourcePath.IndexOfAny(Path.GetInvalidPathChars()) == -1)
-            return new FileEquationsReader(equationsSourcePath, _streamReaderFactory, _logger, _equationParser);
+            return new FileEquationsReader(equationsSourcePath, _logger, _equationParser);
         
-        return new ConsoleEquationsReader(_equationParser);
+        return new ConsoleEquationsReader(_logger, _equationParser);
     }
 }

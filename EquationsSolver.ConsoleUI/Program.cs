@@ -34,7 +34,6 @@ public class Program
         var serviceProvider = new ServiceCollection()
             .AddSingleton(options)
             .AddSingleton<ILogger>(logger)
-            .AddTransient<IStreamReaderFactory, StreamReaderFactory>()
             .AddTransient<IEquationParser, EquationParser>()
             .AddTransient<IEquationReaderFactory, ConsoleEquationReaderFactory>()
             .AddTransient<IEquationSolver, QuadraticEquationSolver>()

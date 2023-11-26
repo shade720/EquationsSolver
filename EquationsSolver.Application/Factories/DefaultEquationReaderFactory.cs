@@ -8,19 +8,16 @@ public sealed class DefaultEquationReaderFactory : IEquationReaderFactory
 {
     private readonly ILogger _logger;
     private readonly IEquationParser _equationParser;
-    private readonly IStreamReaderFactory _streamReaderFactory;
 
     public DefaultEquationReaderFactory(
         ILogger logger,
-        IEquationParser equationParser, 
-        IStreamReaderFactory streamReaderFactory)
+        IEquationParser equationParser)
     {
         _logger = logger;
         _equationParser = equationParser;
-        _streamReaderFactory = streamReaderFactory;
     }
 
-    public IEquationsReader CreateEquationsReader(string? equationsSourcePath)
+    public EquationsReaderBase CreateEquationsReader(string? equationsSourcePath)
     {
         if (string.IsNullOrEmpty(equationsSourcePath))
             throw new ArgumentNullException(nameof(equationsSourcePath));
@@ -28,6 +25,6 @@ public sealed class DefaultEquationReaderFactory : IEquationReaderFactory
         if (equationsSourcePath.IndexOfAny(Path.GetInvalidPathChars()) != -1)
             throw new ArgumentException($"Параметр {nameof(equationsSourcePath)} не является путем к файлу.");
 
-        return new FileEquationsReader(equationsSourcePath, _streamReaderFactory, _logger, _equationParser);
+        return new FileEquationsReader(equationsSourcePath, _logger, _equationParser);
     }
 }

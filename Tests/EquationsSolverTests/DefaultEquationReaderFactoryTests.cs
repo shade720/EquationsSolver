@@ -10,14 +10,12 @@ public class DefaultEquationReaderFactoryTests
     private readonly DefaultEquationReaderFactory _sut;
     private readonly Mock<ILogger> _loggerMock;
     private readonly Mock<IEquationParser> _equationParserMock;
-    private readonly Mock<IStreamReaderFactory> _streamReaderFactoryMock;
 
     public DefaultEquationReaderFactoryTests()
     {
         _loggerMock = new Mock<ILogger>();
         _equationParserMock = new Mock<IEquationParser>();
-        _streamReaderFactoryMock = new Mock<IStreamReaderFactory>();
-        _sut = new DefaultEquationReaderFactory(_loggerMock.Object, _equationParserMock.Object, _streamReaderFactoryMock.Object);
+        _sut = new DefaultEquationReaderFactory(_loggerMock.Object, _equationParserMock.Object);
     }
 
     [Fact]
@@ -50,7 +48,7 @@ public class DefaultEquationReaderFactoryTests
     {
         // Arrange
         const string testSourcePath = @".\TestFiles\empty_file.txt";
-        var localSut = new DefaultEquationReaderFactory(_loggerMock.Object, null, _streamReaderFactoryMock.Object);
+        var localSut = new DefaultEquationReaderFactory(_loggerMock.Object, null);
 
         // Act, Assert
         Assert.Throws<ArgumentNullException>(() => localSut.CreateEquationsReader(testSourcePath));
@@ -61,7 +59,7 @@ public class DefaultEquationReaderFactoryTests
     {
         // Arrange
         const string testSourcePath = @".\TestFiles\empty_file.txt";
-        var localSut = new DefaultEquationReaderFactory(null, _equationParserMock.Object, _streamReaderFactoryMock.Object);
+        var localSut = new DefaultEquationReaderFactory(null, _equationParserMock.Object);
 
         // Act, Assert
         Assert.Throws<ArgumentNullException>(() => localSut.CreateEquationsReader(testSourcePath));

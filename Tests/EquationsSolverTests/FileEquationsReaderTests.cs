@@ -10,16 +10,9 @@ namespace EquationsSolver.Application.UnitTests;
 
 public class FileEquationsReaderTests
 {
-    private readonly FileEquationsReader _sut;
     private readonly Mock<ILogger> _loggerMock = new();
     private readonly Mock<IEquationParser> _equationParserMock = new();
-    private readonly Mock<IStreamReaderFactory> _readerFactoryMock = new();
     private const string FakeFileName = "equitation.txt";
-
-    public FileEquationsReaderTests()
-    {
-        _sut = new FileEquationsReader(FakeFileName, _readerFactoryMock.Object, _loggerMock.Object, _equationParserMock.Object);
-    }
 
     [Fact]
     public void Read_ThreeLines_ThreeEquations()
@@ -36,8 +29,7 @@ public class FileEquationsReaderTests
             new Equation(new[] { 1.0, 1.0, 1.0 })
         };
 
-        var fakeFileBytes = Encoding.UTF8.GetBytes(string.Join("\r\n", line1, line2, line3));
-        var fakeMemoryStream = new MemoryStream(fakeFileBytes);
+        var sut = new FakeFileEquationsReader(string.Join("\r\n", line1, line2, line3), _loggerMock.Object, _equationParserMock.Object);
 
         _equationParserMock
             .Setup(x => x.Parse(line1))
@@ -48,12 +40,9 @@ public class FileEquationsReaderTests
         _equationParserMock
             .Setup(x => x.Parse(line3))
             .Returns(expectedEquations[2]);
-        _readerFactoryMock
-            .Setup(x => x.GetStreamReader(FakeFileName))
-            .Returns(new StreamReader(fakeMemoryStream));
 
         // Act
-        var actuallyReadEquations = _sut.Read().ToArray();
+        var actuallyReadEquations = sut.Read().ToArray();
 
         // Assert
         Assert.Equal(expectedEquations.Length, actuallyReadEquations.Length);
@@ -91,8 +80,7 @@ public class FileEquationsReaderTests
             new Equation(new[] { 1.0, 0, 1.0 })
         };
 
-        var fakeFileBytes = Encoding.UTF8.GetBytes(string.Join("\r\n", line1, line2, line3));
-        var fakeMemoryStream = new MemoryStream(fakeFileBytes);
+        var sut = new FakeFileEquationsReader(string.Join("\r\n", line1, line2, line3), _loggerMock.Object, _equationParserMock.Object);
 
         _equationParserMock
             .Setup(x => x.Parse(line1))
@@ -103,12 +91,9 @@ public class FileEquationsReaderTests
         _equationParserMock
             .Setup(x => x.Parse(line3))
             .Throws<EquationParseException>();
-        _readerFactoryMock
-            .Setup(x => x.GetStreamReader(FakeFileName))
-            .Returns(new StreamReader(fakeMemoryStream));
 
         // Act
-        var actuallyReadEquations = _sut.Read().ToArray();
+        var actuallyReadEquations = sut.Read().ToArray();
 
         // Assert
         Assert.Single(actuallyReadEquations);
@@ -139,15 +124,10 @@ public class FileEquationsReaderTests
     {
         // Arrange
         const string errorMessage1 = "Строка №1 содержит ошибку. Уравнение будет пропущено.";
-        var fakeFileBytes = Encoding.UTF8.GetBytes("\r\n");
-        var fakeMemoryStream = new MemoryStream(fakeFileBytes);
-
-        _readerFactoryMock
-            .Setup(x => x.GetStreamReader(FakeFileName))
-            .Returns(new StreamReader(fakeMemoryStream));
+        var sut = new FakeFileEquationsReader("\r\n", _loggerMock.Object, _equationParserMock.Object);
 
         // Act
-        var actuallyReadEquations = _sut.Read().ToArray();
+        var actuallyReadEquations = sut.Read().ToArray();
 
         // Assert
         Assert.Empty(actuallyReadEquations);

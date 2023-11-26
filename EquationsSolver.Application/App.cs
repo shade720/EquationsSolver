@@ -38,7 +38,7 @@ public sealed class App
     }
 
     private void SolveSequential(
-        IEquationsReader equationsReader, 
+        EquationsReaderBase equationsReader, 
         IEquationSolver solver, 
         ISolvingResultsPresenter solvingResultsPresenter)
     {
@@ -51,7 +51,7 @@ public sealed class App
     }
 
     private void SolveParallel(
-        IEquationsReader equationsReader, 
+        EquationsReaderBase equationsReader, 
         IEquationSolver solver, 
         ISolvingResultsPresenter solvingResultsPresenter)
     {
