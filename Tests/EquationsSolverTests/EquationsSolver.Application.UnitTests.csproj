@@ -27,13 +27,4 @@
     <ProjectReference Include="..\..\EquationsSolver.Application\EquationsSolver.Application.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <None Update="TestFiles\empty_file.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="TestFiles\test_equations.txt">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
 </Project>
