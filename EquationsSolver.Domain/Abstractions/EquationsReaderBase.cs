@@ -4,48 +4,49 @@ using Microsoft.Extensions.Logging;
 namespace EquationsSolver.Domain.Abstractions;
 public abstract class EquationsReaderBase
 {
-    protected readonly ILogger Logger;
-    protected readonly IEquationParser EquationParser;
+    private readonly ILogger _logger;
+    private readonly IEquationParser _equationParser;
 
     protected EquationsReaderBase(
         ILogger logger,
         IEquationParser equationParser)
     {
-        Logger = logger ?? throw new ArgumentNullException(nameof(logger));
-        EquationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+        _equationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser));
     }
 
-    public virtual IEnumerable<Equation> Read()
+    public IEnumerable<Equation> Read()
     {
         using var sr = new StreamReader(OpenEquationsSource());
         var linesCounter = 0;
-        while (!sr.EndOfStream)
+        while (true)
         {
             linesCounter++;
 
-            Logger.LogInformation("Введите коэффициенты: ");
+            _logger.LogInformation("Введите коэффициенты: ");
             var coefficientLine = sr.ReadLine();
-            
+
             if (string.IsNullOrEmpty(coefficientLine))
             {
-                Logger.LogError("Строка №{0} содержит ошибку. Уравнение будет пропущено.", linesCounter);
-                continue;
+                _logger.LogError("Полученная строка №{0} пустая. Завершаем чтение...", linesCounter);
+                yield break;
             }
 
             Equation parsedEquation;
             try
             {
-                parsedEquation = EquationParser.Parse(coefficientLine);
+                parsedEquation = _equationParser.Parse(coefficientLine);
             }
             catch (Exception e)
             {
-                Logger.LogError("Строка {0}. Ошибка парсинга уравнения '{1}'. Уравнение будет пропущено.", linesCounter, e.Message);
+                _logger.LogError("Строка {0}. Ошибка парсинга уравнения '{1}'. Уравнение будет пропущено.", 
+                    linesCounter, e.Message);
                 continue;
             }
 
-            Logger.LogInformation("Получено уравнение {0}.", parsedEquation);
+            _logger.LogInformation("Получено уравнение {0}.", parsedEquation);
             yield return parsedEquation;
-        }
+        } 
     }
 
     protected abstract Stream OpenEquationsSource();

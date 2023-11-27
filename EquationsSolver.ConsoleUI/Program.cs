@@ -1,6 +1,5 @@
 ﻿using CommandLine;
 using EquationsSolver.Application;
-using EquationsSolver.Application.Factories;
 using EquationsSolver.Application.Presenters;
 using EquationsSolver.Application.Readers;
 using EquationsSolver.Application.Solvers;
