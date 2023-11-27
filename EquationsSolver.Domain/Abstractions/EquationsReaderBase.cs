@@ -15,7 +15,7 @@ public abstract class EquationsReaderBase
         _equationParser = equationParser ?? throw new ArgumentNullException(nameof(equationParser));
     }
 
-    public IEnumerable<Equation> Read()
+    public virtual IEnumerable<Equation> Read()
     {
         using var sr = new StreamReader(OpenEquationsSource());
         var linesCounter = 0;

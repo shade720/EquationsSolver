@@ -60,7 +60,7 @@ public class FileEquationsReaderTests
                 It.Is<It.IsAnyType>((@object, @type) => true),
                 It.IsAny<Exception>(),
                 It.IsAny<Func<It.IsAnyType, Exception, string>>()),
-            Times.Never);
+            Times.Once);
     }
 
     [Fact]
@@ -123,7 +123,7 @@ public class FileEquationsReaderTests
     public void Read_EmptyFile_NoEquationsNoExceptions()
     {
         // Arrange
-        const string errorMessage1 = "Строка №1 содержит ошибку. Уравнение будет пропущено.";
+        const string errorMessage1 = "Полученная строка №1 пустая. Завершаем чтение...";
         var sut = new FakeFileEquationsReader("\r\n", _loggerMock.Object, _equationParserMock.Object);
 
         // Act

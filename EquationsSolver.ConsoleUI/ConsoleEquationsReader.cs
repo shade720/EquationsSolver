@@ -1,5 +1,4 @@
 ﻿using EquationsSolver.Domain.Abstractions;
-using EquationsSolver.Domain.Models;
 using Microsoft.Extensions.Logging;
 
 namespace EquationsSolver.ConsoleUI;
