@@ -6,7 +6,7 @@
     },
     "EquationsSolver.ConsoleUI": {
       "commandName": "Project",
-      "commandLineArgs": "-f E:\\Projects\\EquationsSolver\\EquationsSolver.ConsoleUI\\equations.txt"
+      "commandLineArgs": "-f E:\\Projects\\EquationsSolver\\EquationsSolver.ConsoleUI\\equations.txt -p 4"
     }
   }
 }

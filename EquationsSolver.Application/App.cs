@@ -58,7 +58,7 @@ public sealed class App
         _logger.LogInformation("Используется параллельный режим\r\n");
         var results = new ConcurrentBag<EquationSolvingResult>();
         Parallel.ForEach(
-            equationsReader.Read().ToArray(),
+            equationsReader.Read(),
             new ParallelOptions { MaxDegreeOfParallelism = _options.ThreadsNumber!.Value },
             equation => results.Add(solver.Solve(equation))
         );
